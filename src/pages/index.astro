@@ -1,0 +1,949 @@
+---
+const currentYear = new Date().getFullYear();
+// Eco Escuela Soy Libre - Landing Page
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/Logoconslogan@144x.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Eco Escuela Soy Libre - Educación libre que inspira. Waldorf, Montessori, Reggio Emilia, asiri en Lima Este."
+    />
+    <title>Eco Escuela Soy Libre - Construyendo una nueva humanidad</title>
+    ....
+    <!-- Google Fonts - Poppins y Baloo Bhai 2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Baloo+Bhai+2:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        /* Colores corporativos según manual de identidad */
+        --verde-oscuro: #16673d;
+        --verde-claro: #7da53c;
+        --amarillo: #fab732;
+        --rojo-tierra: #c66a4d;
+        --blanco: #ffffff;
+        --negro: #000000;
+        --gris-claro: #f5f5f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--negro);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Baloo Bhai 2", cursive;
+        font-weight: 700;
+      }
+
+      /* Header / Navegación */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 0.25rem 0;
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo img {
+        height: 50px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo img:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--verde-oscuro);
+        font-weight: 600;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--amarillo);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--verde-claro);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .cta-button {
+        background: var(--amarillo);
+        color: var(--verde-oscuro);
+        padding: 0.4rem 1.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(250, 183, 50, 0.3);
+      }
+
+      .cta-button:hover {
+        background: var(--verde-claro);
+        color: var(--blanco);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(125, 165, 60, 0.4);
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 40px;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          var(--verde-oscuro) 0%,
+          var(--verde-claro) 100%
+        );
+      }
+
+      /* Imagen de fondo del hero */
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("/hero-image.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        opacity: 1;
+        z-index: 0;
+      }
+
+      /* Overlay de gradiente sobre la imagen */
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(22, 103, 61, 0.45) 0%,
+          rgba(125, 165, 60, 0.35) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+        color: var(--blanco);
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero .tagline {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+        animation: fadeInUp 1.2s ease;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        line-height: 1.8;
+        animation: fadeInUp 1.4s ease;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 1.6s ease;
+        margin-bottom: 2rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        padding: 0.5rem 2.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: var(--amarillo);
+        color: var(--verde-oscuro);
+        box-shadow: 0 4px 15px rgba(250, 183, 50, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(250, 183, 50, 0.6);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--blanco);
+        border: 2px solid var(--blanco);
+      }
+
+      .btn-secondary:hover {
+        background: var(--blanco);
+        color: var(--verde-oscuro);
+        transform: translateY(-3px);
+      }
+
+      /* Sección Misión y Visión */
+      .mision-vision {
+        padding: 5rem 2rem;
+        background: var(--gris-claro);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: var(--verde-oscuro);
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: var(--amarillo);
+        border-radius: 2px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .card {
+        background: var(--blanco);
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--verde-claro), var(--amarillo));
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .card h3 {
+        color: var(--verde-oscuro);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .card p {
+        color: #555;
+        line-height: 1.8;
+      }
+
+      /* Sección Metodologías */
+      .metodologias {
+        padding: 5rem 2rem;
+        background: var(--blanco);
+      }
+
+      .metodologias-content {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto 3rem;
+      }
+
+      .metodologias-badges {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .badge {
+        background: var(--verde-claro);
+        color: var(--blanco);
+        padding: 0.4rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(125, 165, 60, 0.3);
+      }
+
+      .badge:hover {
+        background: var(--verde-oscuro);
+        transform: scale(1.05);
+      }
+
+      /* Sección Actividades */
+      .actividades {
+        padding: 5rem 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--verde-oscuro) 0%,
+          var(--verde-claro) 100%
+        );
+        color: var(--blanco);
+      }
+
+      .actividades .section-title {
+        color: var(--blanco);
+      }
+
+      .actividades-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .actividad-item {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .actividad-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: var(--amarillo);
+        transform: translateY(-5px);
+      }
+
+      .actividad-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .actividad-item h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Sección CTA Final */
+      .cta-section {
+        padding: 5rem 2rem;
+        background: var(--amarillo);
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        color: var(--verde-oscuro);
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        color: var(--verde-oscuro);
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-section .btn-primary {
+        background: var(--verde-oscuro);
+        color: var(--blanco);
+      }
+
+      .cta-section .btn-primary:hover {
+        background: var(--verde-claro);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--verde-oscuro);
+        color: var(--blanco);
+        padding: 3rem 2rem 1rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        color: var(--amarillo);
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: var(--amarillo);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .texto-chico {
+        font-size: 0.8em; /* O el tamaño que prefieras, por ejemplo: 0.8em */
+        /* Opcional: puedes hacerlo un poco más sutil */
+        color: #ffffff;
+      }
+
+      .texto-chico a {
+        color: #ffffff; /* Color azul estándar de enlaces. Puedes usar otro tono de azul si prefieres. */
+        text-decoration: none;
+      }
+      /* Animaciones */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Sección Mapa */
+      .mapa-section {
+        padding: 5rem 2rem;
+        background: var(--gris-claro);
+      }
+
+      .mapa-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .mapa-wrapper {
+        width: 100%;
+        height: 450px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        margin-top: 2rem;
+      }
+
+      .mapa-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .mapa-info {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .mapa-info p {
+        color: #555;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+      }
+
+      /* Botón flotante de WhatsApp */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+        cursor: pointer;
+        z-index: 9999;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+      }
+
+      .whatsapp-float svg {
+        width: 35px;
+        height: 35px;
+        fill: white;
+      }
+
+      .whatsapp-tooltip {
+        position: absolute;
+        right: 70px;
+        background: var(--verde-oscuro);
+        color: white;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .whatsapp-float:hover .whatsapp-tooltip {
+        opacity: 1;
+      }
+
+      .whatsapp-tooltip::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid var(--verde-oscuro);
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: 85vh;
+        }
+
+        .hero::before {
+          background-position: 65% center;
+          opacity: 1;
+        }
+
+        .hero::after {
+          background: linear-gradient(
+            135deg,
+            rgba(22, 103, 61, 0.5) 0%,
+            rgba(125, 165, 60, 0.4) 100%
+          );
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero .tagline {
+          font-size: 1.2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .cards-grid,
+        .actividades-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .mapa-wrapper {
+          height: 300px;
+        }
+
+        .whatsapp-float {
+          bottom: 20px;
+          right: 20px;
+          width: 55px;
+          height: 55px;
+        }
+
+        .whatsapp-float svg {
+          width: 30px;
+          height: 30px;
+        }
+
+        .whatsapp-tooltip {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="#" target="_blank"
+            ><img src="/logo_eco.png" alt="Eco Escuela Soy Libre" />
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#metodologias">Metodologías</a></li>
+          <li><a href="#actividades">Actividades</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a href="#contacto" class="cta-button">Inscríbete</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Construyendo una nueva humanidad</h1>
+        <p class="tagline">
+          Educación libre que inspira autenticidad, creatividad y consciencia
+        </p>
+        <p>
+          En Eco Escuela Soy Libre creemos que cada niño merece crecer en un
+          espacio donde su esencia sea respetada, su curiosidad sea celebrada y
+          su conexión con la naturaleza sea profunda. Ofrecemos una educación
+          integral basada en metodologías innovadoras que despiertan el
+          potencial único de cada ser humano.
+        </p>
+        <div class="hero-buttons">
+          <a href="/metodologia" class="btn-primary" target="_blank"
+            >Nuestra propuesta</a
+          >
+          <a href="/brochure_eco.pdf" class="btn-secondary" target="_blank"
+            >Curricula 2026</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Misión y Visión -->
+    <section id="nosotros" class="mision-vision">
+      <div class="container">
+        <h2 class="section-title">Nuestra Esencia</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <h3>Visión</h3>
+            <p>
+              Ser en Lima Este un referente de educación libre que inspire a
+              familias, docentes y comunidad a transformar la forma de aprender
+              y enseñar. Queremos que cada niño crezca como un ser auténtico,
+              creativo y consciente, en conexión con la naturaleza y con su
+              propia esencia.
+            </p>
+            <p>
+              Soñamos con formar generaciones capaces de pensar con libertad,
+              actuar con responsabilidad y construir un futuro más humano y
+              armonioso para el Perú y el mundo.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Misión</h3>
+            <p>
+              Brindar en Lima un espacio educativo vivo y respetuoso, donde cada
+              niño sea acompañado en su desarrollo integral —emocional,
+              intelectual, físico y espiritual— a través de metodologías libres
+              como Waldorf, Montessori, Reggio Emilia y otras pedagogías
+              innovadoras.
+            </p>
+            <p>
+              Nuestra misión es despertar la curiosidad, la creatividad y el
+              pensamiento crítico, fomentando la conexión con la naturaleza, la
+              sensibilidad y la confianza en la propia intuición. Así, formamos
+              seres humanos plenos y conscientes, capaces de aportar con
+              responsabilidad y amor a la construcción de una sociedad más justa
+              y armoniosa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Metodologías -->
+    <section id="metodologias" class="metodologias">
+      <div class="container">
+        <h2 class="section-title">Metodologías Innovadoras</h2>
+        <div class="metodologias-content">
+          <p>
+            Integramos lo mejor de las pedagogías más reconocidas del mundo para
+            crear una experiencia educativa única y transformadora. Nuestro
+            enfoque respeta los ritmos naturales de aprendizaje y fomenta el
+            desarrollo integral de cada niño.
+          </p>
+        </div>
+        <div class="metodologias-badges">
+          <span class="badge">Waldorf</span>
+          <span class="badge">Montessori</span>
+          <span class="badge">Reggio Emilia</span>
+          <span class="badge">Asiri</span>
+          <span class="badge">3000</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Actividades -->
+    <section id="actividades" class="actividades">
+      <div class="container">
+        <h2 class="section-title">Actividades Extraescolares</h2>
+        <div class="actividades-grid">
+          <div class="actividad-item">
+            <div class="actividad-icon">🌱</div>
+            <h4>Biohuerto e Invernadero</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🎨</div>
+            <h4>Arteterapia</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🎭</div>
+            <h4>Teatro</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🎵</div>
+            <h4>Música</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">👁️</div>
+            <h4>Visión Extraocular</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">💰</div>
+            <h4>Finanzas para Niños</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🧠</div>
+            <h4>Inteligencia Emocional</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🌟</div>
+            <h4>Coaching de Niños</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🔨</div>
+            <h4>Carpintería</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🧶</div>
+            <h4>Tejido</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🌍</div>
+            <h4>Quechua e Inglés</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🐾</div>
+            <h4>Biología Animal</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🎾</div>
+            <h4>Tenis</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">⛳</div>
+            <h4>Golf</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">⚽</div>
+            <h4>Fútbol</h4>
+          </div>
+          <div class="actividad-item">
+            <div class="actividad-icon">🏊</div>
+            <h4>Piscina</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección CTA Final -->
+    <section id="contacto" class="cta-section">
+      <div class="container">
+        <h2>¿Listo para transformar la educación de tu hijo?</h2>
+        <p>
+          Únete a nuestra comunidad de familias comprometidas con una educación
+          consciente, libre y respetuosa. Agenda una visita y descubre cómo
+          podemos acompañar el desarrollo integral de tu hijo.
+        </p>
+        <a href="mailto:contacto@ecoescuelasoyllibre.edu.pe" class="btn-primary"
+          >Contáctanos ahora</a
+        >
+      </div>
+    </section>
+
+    <!-- Sección Mapa -->
+    <section class="mapa-section">
+      <div class="mapa-container">
+        <h2 class="section-title">Encuéntranos</h2>
+        <div class="mapa-info">
+          <p>Visítanos en Lima Este y conoce nuestras instalaciones</p>
+        </div>
+        <div class="mapa-wrapper">
+          <!-- Google Maps Embed - Reemplaza con tu ubicación específica -->
+          <!-- Para editar: Ve a Google Maps, busca tu ubicación, haz clic en "Compartir" > "Insertar un mapa" y copia el iframe -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d761.0605527266985!2d-76.7490123!3d-11.9651361!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x49e18b5f4a001fab%3A0xfe508675d1792524!2sEco%20Escuela%20Soy%20Libre!5e1!3m2!1ses!2spe!4v1761530070992!5m2!1ses!2spe"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Eco Escuela Soy Libre"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Eco Escuela Soy Libre</h3>
+          <p>
+            Construyendo una nueva humanidad a través de la educación libre y
+            consciente.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p>Lima Este, Perú</p>
+          <a href="mailto:contacto@ecoescuelasoyllibre.edu.pe"
+            >info@ecoescuelalibre.com</a
+          >
+          <a href="tel:+51973172074">+51 973172074</a>
+        </div>
+        <div class="footer-section">
+          <h3>Síguenos</h3>
+          <a href="https://www.tiktok.com/@ecoescuelasoylibre">Tiktok</a>
+          <a href="https://www.instagram.com/eco_escuela_soy_libre">Instagram</a
+          >
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="texto-chico">
+          &copy; {currentYear} Eco Escuela Soy Libre. developed by <a
+            href="https://www.pengrafic.com">Pengrafic.</a
+          >
+        </span>
+      </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a
+      href="https://wa.me/51973172074?text=Hola%2C%20me%20gustaría%20obtener%20más%20información%20sobre%20Eco%20Escuela%20Soy%20Libre"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar por WhatsApp"
+    >
+      <span class="whatsapp-tooltip">¡Escríbenos por WhatsApp!</span>
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.247 1.408 1.417-5.267-0.316-0.522c-1.314-2.178-2.010-4.688-2.010-7.257 0-7.384 6.050-13.6 13.6-13.6s13.6 6.050 13.6 13.6-6.050 13.6-13.6 13.6zM21.8 18.267c-0.397-0.2-2.348-1.158-2.713-1.29s-0.628-0.2-0.893 0.2c-0.265 0.397-1.025 1.29-1.257 1.557s-0.463 0.298-0.86 0.1c-0.398-0.2-1.677-0.618-3.195-1.973-1.182-1.053-1.98-2.353-2.212-2.75s-0.025-0.613 0.175-0.81c0.18-0.178 0.397-0.463 0.596-0.695s0.265-0.397 0.397-0.662c0.132-0.265 0.066-0.497-0.033-0.695s-0.893-2.15-1.223-2.945c-0.322-0.776-0.649-0.67-0.893-0.683-0.231-0.012-0.496-0.015-0.76-0.015s-0.695 0.1-1.058 0.497c-0.364 0.397-1.388 1.357-1.388 3.308s1.421 3.836 1.62 4.102c0.199 0.265 2.799 4.275 6.781 5.995 0.948 0.411 1.688 0.655 2.265 0.839 0.955 0.303 1.824 0.26 2.512 0.158 0.766-0.115 2.348-0.96 2.679-1.888s0.331-1.723 0.232-1.888c-0.1-0.166-0.364-0.265-0.76-0.463z"
+        ></path>
+      </svg>
+    </a>
+  </body>
+</html>
